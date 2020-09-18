@@ -1,26 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import BlizzardAPI from './api/BlizzardAPI'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Pages
+import Characters from './pages/Characters'
+import Mounts from './pages/Mounts'
+import Pets from './pages/Pets'
+
+// Components
+import Nav from './components/Nav/Nav'
+import Footer from './components/Footer/Footer'
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import './App.css'
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { accessToken: null }
+    this.setAccessToken = this.setAccessToken.bind(this)
+  }
+
+  setAccessToken(token) {
+    this.setState({ accessToken: token })
+  }
+
+  componentDidMount() {
+    // Requesting access token for Blizzard API
+    if (this.state.accessToken === null) {
+      console.log('Requesting token ...')
+      BlizzardAPI.getAccessToken(this.setAccessToken)
+    }
+  }
+
+  render() {
+    const { accessToken } = this.state
+    return (
+      <div className="app">
+        <Router>
+          <Nav />
+          <div className="app-body">
+            <Switch>
+              <Route exact path="/" component={Characters} />
+              <Route path="/characters" component={Characters} />
+              <Route
+                path="/mounts"
+                render={(props) => <Mounts {...props} token={accessToken} />}
+              />
+              <Route path="/pets" component={Pets} />
+            </Switch>
+          </div>
+        </Router>
+
+        <Footer />
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App

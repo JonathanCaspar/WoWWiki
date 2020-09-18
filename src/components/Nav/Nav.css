@@ -1,0 +1,29 @@
+.nav-container{
+
+  width: 100%;
+  background: grey;
+  height :56px;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.nav-logo{
+	font-size: 2vw;
+	display: flex;
+	align-items: center;
+}
+
+.nav a {
+	color: white;
+	text-decoration: none;
+	font-size: 1.5rem;
+	padding: 0 3px;
+}
+
+.nav-spacer {
+	flex: 1;
+}
