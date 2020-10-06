@@ -7,7 +7,6 @@ import './Nav.css'
 import '@animated-burgers/burger-squeeze/dist/styles.css'
 
 class Nav extends Component {
-	
 	constructor(props) {
 		super(props)
 		this.state = { burgerOpen: false, lang: 'en' }
@@ -20,37 +19,34 @@ class Nav extends Component {
 	}
 
 	handleLangChange = () => {
-		const { t, i18n } = this.props
+		const { i18n } = this.props
 
 		this.setState((prevState) => {
 			let prevLang = prevState.lang
-			let newLang  = this.getNextLang(prevLang)
+			let newLang = this.getNextLang(prevLang)
 			i18n.changeLanguage(newLang)
-			return { lang : newLang}
+			return { lang: newLang }
 		})
 	}
 
 	getNextLang(lang) {
-		return (lang === 'en' ? 'fr' : 'en' )
+		return lang === 'en' ? 'fr' : 'en'
 	}
 
 	render() {
-		const { t, i18n } = this.props
-		const {burgerOpen, lang} = this.state
+		const { t } = this.props
+		const { burgerOpen, lang } = this.state
 		let nextLang = this.getNextLang(lang)
 
 		return (
 			<div className="nav-container">
 				<div className="nav">
-					<Burger
-						isOpen={burgerOpen}
-						onClick={this.handleBurgerOpen}
-					/>
+					<Burger isOpen={burgerOpen} onClick={this.handleBurgerOpen} />
 					<div className="nav-logo">
 						<img src="favicon.svg" alt="logo" />
 						<h3>World&nbsp;of&nbsp;Warcraft&nbsp;Wiki</h3>
 					</div>
-					<div className="nav-spacer" />
+					<div className="spacer" />
 					<div className="nav-links">
 						<Link to="/characters">{t('characters.title')}</Link>
 
@@ -60,9 +56,7 @@ class Nav extends Component {
 					</div>
 
 					<div className="nav-lang">
-						<button onClick={this.handleLangChange}>
-							{nextLang}
-						</button>
+						<button onClick={this.handleLangChange}>{nextLang}</button>
 					</div>
 				</div>
 			</div>

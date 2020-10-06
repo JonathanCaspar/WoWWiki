@@ -7,5 +7,11 @@ html{
   font-family: "Open Sans","Helvetica Neue",Arial,sans-serif;
   min-height: 100vh;
   color: white;
+  margin: 10px;
 
 }
+
+
+.spacer {
+	flex: 1;
+}  

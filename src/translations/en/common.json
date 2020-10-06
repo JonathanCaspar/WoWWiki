@@ -11,7 +11,8 @@
 	},
 
 	"common": {
-		"load": "Load"
+		"load": "Load",
+		"loading": "Loading"
 	},
 
 	"footer": {

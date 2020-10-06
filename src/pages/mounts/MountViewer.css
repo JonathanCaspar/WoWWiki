@@ -1,0 +1,22 @@
+.loader{
+	display:inline;
+}
+
+.mount-viewer{
+	padding: 10px;
+	background: #06002f;
+	    width: 350px;
+    height: fit-content;
+}
+
+.mount-viewer img{
+	width: 100%;
+}
+
+.mount-name{
+	font-size: 15pt;
+}
+
+.mount-desc{
+	font-size: 10pt;
+}

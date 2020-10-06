@@ -1,6 +1,6 @@
 .footer{
   font-size: 10px;
-  position: absolute;
+  position :relative;
   bottom: 0;
   width: 100%;
 }
