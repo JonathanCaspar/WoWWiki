@@ -19,7 +19,7 @@ export const fetchMounts = createAsyncThunk('mounts/fetchMounts', async () => {
 // Async thunk to fetch mount data by its id
 export const fetchMountById = createAsyncThunk(
   'mounts/fetchMountById',
-  async (mountId) => {
+  async (mountId, dispatch) => {
     const response = await client.getMountById(
       mountId,
       'eu',
