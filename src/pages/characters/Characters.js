@@ -25,7 +25,9 @@ class Characters extends Component {
 
 		return (
 			<div className="Characters">
+				<h1>Work in progress - not working</h1>
 				<h2>{t('characters.title')}</h2>
+				
 				<form onSubmit={null}>
 					<label>
 						{t('characters.name-query')}

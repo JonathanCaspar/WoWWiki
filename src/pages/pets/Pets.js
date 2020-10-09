@@ -7,6 +7,8 @@ function Pets() {
 
 	return (
 		<div className="Pets">
+						<h1>Work in progress - not working</h1>
+
 			<h2>{t('pets.title')}</h2>
 		</div>
 	)
