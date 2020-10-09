@@ -1,12 +1,12 @@
-.nav-list{
-    width: 35%;
+.nav-list {
+  width: 35%;
 }
 
-.mounts-nav-container{
-	display:flex;
-	
+.mounts-nav-container {
+  display: flex;
+  height: 425px;
 }
 
-.Mounts{
-	text-align: left;
+.Mounts {
+  text-align: left;
 }

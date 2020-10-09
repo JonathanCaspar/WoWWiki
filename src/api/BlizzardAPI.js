@@ -32,7 +32,7 @@ async function getAuthToken() {
         Math.floor(Date.now() / 1000) > token_expire_time - 900 // 15min before expire time
       if (!isTokenExpired) {
         // Token is not expired
-        console.log('...found token : ' + token)
+        //console.log('...found token : ' + token)
         return token
       }
     }
@@ -46,7 +46,6 @@ async function getAuthToken() {
       let new_expire_date =
         Math.floor(Date.now() / 1000) + result.data.expires_in
 
-      console.log(result)
       console.log('... Putting in local storage blizzard_token : ' + token)
       localStorage.setItem('blizzard_token', result.data.access_token)
 
@@ -78,7 +77,7 @@ export async function client(endpoint, { body, ...customConfig } = {}) {
       Authorization: `Bearer ${token}`,
     },
     validateStatus: function (status) {
-      return status == 200
+      return status === 200
     },
   }
 

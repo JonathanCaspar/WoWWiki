@@ -1,6 +1,20 @@
-.nav-list{
-	text-align: left;
-    padding: 10px;
-    background: #06002f;
-        margin-right: 10px;
+.nav-list {
+  font-size: 10pt;
+  text-align: left;
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  overflow-y: auto;
+  min-width: 240px;
+}
+
+.nav-list-row {
+  display: block;
+  padding: 0 4px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+.nav-list-row:hover {
+  background-color: grey;
 }

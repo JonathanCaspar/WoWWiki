@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import MountsList from './MountsList'
@@ -14,7 +15,7 @@ export const Mounts = () => {
       <div className="mounts-nav-container">
         <MountsList />
         <div className="spacer" />
-        <MountViewer />
+        <Route path="/mounts/:mountId" component={MountViewer} />
         <div className="spacer" />
       </div>
     </div>

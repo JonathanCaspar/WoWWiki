@@ -1,17 +1,22 @@
-html{  
-  background-color: black;
-  background-color: #282c34 important!;
+html {
+  background-color: #002650;
 }
 .app {
   text-align: center;
-  font-family: "Open Sans","Helvetica Neue",Arial,sans-serif;
+  font: 400 16px/20px 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   min-height: 100vh;
   color: white;
   margin: 10px;
 
+  display: flex;
+  flex-direction: column;
 }
 
+.section {
+  background: #1b2735;
+  border-radius: 5px;
+}
 
 .spacer {
-	flex: 1;
-}  
+  flex: 1;
+}

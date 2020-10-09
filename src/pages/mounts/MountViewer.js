@@ -1,69 +1,59 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchMountById, fetchMountAsset } from './MountsSlice' // Actions
-import { selectMountById } from './MountsSlice' // Selectors
+import { fetchMountById, fetchMountAsset, newMountClicked } from './MountsSlice' // Actions
+//import { selectMountById } from './MountsSlice' // Selectors
 
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import './MountViewer.css'
+import { useTranslation } from 'react-i18next'
 
-export function MountViewer() {
+export function MountViewer({ match }) {
+  const { mountId } = match.params
+
   const dispatch = useDispatch()
+  const { t } = useTranslation('common')
 
-  const selectedMount = useSelector((state) => state.mounts.selectedMount)
-  const selectedMountId = useSelector((state) => state.mounts.selectedMountId)
-  const selectedMountStatus = useSelector(
-    (state) => state.mounts.selectedMountStatus
-  )
+  const mount = useSelector((state) => state.mounts.selectedMount)
+  const mountStatus = useSelector((state) => state.mounts.selectedMountStatus)
+  const mountAsset = useSelector((state) => state.mounts.selectedMountAsset)
 
-  // If selected mount id changed : fetch selected mount info
+  // When mountId (prop passed by router) changes : dispatch newMountClicked
   useEffect(() => {
-    if (selectedMountStatus === 'idle' && selectedMountId) {
-      dispatch(fetchMountById(selectedMountId))
+    if (mountStatus !== 'idle') {
+      dispatch(newMountClicked())
     }
-  }, [selectedMountId, dispatch])
+  }, [mountId, dispatch])
+
+  // If mount info hasn't been fetched, fetch it
+  useEffect(() => {
+    if (mountStatus === 'idle') {
+      dispatch(fetchMountById(mountId))
+    }
+  }, [mountStatus, dispatch])
+
+  // When selected mount exists : fetch mount asset
+  useEffect(() => {
+    if (mount) {
+      dispatch(fetchMountAsset(mount))
+    }
+  }, [mount, dispatch])
 
   let renderedMount
 
-  if (selectedMountStatus === 'loading') {
-    renderedMount = <LoadingSpinner />
-  } else if (selectedMountStatus === 'succeeded') {
+  if (mountStatus === 'loading') {
+    renderedMount = <LoadingSpinner text={t('common.loading')} />
+  } else if (mountStatus === 'succeeded') {
     renderedMount = (
       <div>
-        <div className="mount-name">{selectedMount.name}</div>
-        <div className="mount-desc">{selectedMount.description}</div>
-        <img src={''} alt={selectedMount.name} />
+        <div className="mount-name">{mount.name}</div>
+        <div className="mount-desc">{mount.description}</div>
+        <img src={mountAsset} alt={mount.name} />
       </div>
     )
-  } else if (selectedMountStatus === 'failed') {
-    renderedMount = <div>Couldn't load mount</div>
+  } else if (mountStatus === 'failed') {
+    renderedMount = <div>The mount id {mountId} does not exist.</div>
   }
 
-  return <div className="mount-viewer">{renderedMount}</div>
+  return <div className="mount-viewer section">{renderedMount}</div>
 }
 export default MountViewer
-
-/*async fetchMount() {
-
-
-    //let blizzardAPI = new BlizzardAPI()
-    await blizzardAPI
-      .getMountById(this.props.mountid, 'eu', 'static-eu', 'fr_FR')
-      .then(
-        (result) => {
-          this.setState({
-            loading: false,
-            mount: result.data,
-          })
-        },
-        (error) => {
-          console.log('Erreur ComponentDidUpdate pendant getMountById' + error)
-          this.setState({ error: true })
-        }
-      )
-
-    await blizzardAPI
-      .get(this.state.mount.creature_displays['0'].key.href)
-      .then((result) => {
-        this.setState({ asset: result.data.assets['0'].value })
-      })
-  }*/

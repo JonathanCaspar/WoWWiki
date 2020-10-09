@@ -1,20 +1,13 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
-import { mountSelected, fetchMounts } from './MountsSlice' // Actions
-import { selectAllMounts } from './MountsSlice' // Selectors
+import { fetchMounts } from './MountsSlice' // Actions
+//import { selectAllMounts } from './MountsSlice' // Selectors
 
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import './MountsList.css'
-
-const MountListItem = ({ name, id, onClickItem }) => {
-  return (
-    <div className="nav-list-row" onClick={() => onClickItem(name, id)}>
-      {name}
-    </div>
-  )
-}
 
 function MountsList() {
   const dispatch = useDispatch()
@@ -31,26 +24,21 @@ function MountsList() {
   let renderedList
 
   if (status === 'loading') {
-    renderedList = <LoadingSpinner />
+    renderedList = <LoadingSpinner text={t('common.loading')} />
   } else if (status === 'succeeded') {
     const orderedMounts = mounts.slice().sort((a, b) => {
-      a.name.localeCompare(b.name)
+      return a.name.localeCompare(b.name)
     })
 
     renderedList = orderedMounts.map((mount) => (
-      <MountListItem
-        name={mount.name}
-        id={mount.id}
-        onClickItem={() => {
-          dispatch(mountSelected(mount.id))
-        }}
-        key={mount.id}
-      />
+      <Link key={mount.id} className="nav-list-row" to={`/mounts/${mount.id}`}>
+        {mount.name}
+      </Link>
     ))
   } else if (status === 'failed') {
     renderedList = <div>Couldn't load mounts</div>
   }
 
-  return <div className="nav-list">{renderedList}</div>
+  return <div className="nav-list section">{renderedList}</div>
 }
 export default MountsList

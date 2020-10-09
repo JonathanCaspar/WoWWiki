@@ -1,21 +1,21 @@
 {
-	"characters": {
-		"title": "Characters",
-		"name-query": "Enter your character name:"
-	},
-	"mounts": {
-		"title": "Mounts"
-	},
-	"pets": {
-		"title": "Pets"
-	},
+  "characters": {
+    "title": "Characters",
+    "name-query": "Enter your character name:"
+  },
+  "mounts": {
+    "title": "Mounts"
+  },
+  "pets": {
+    "title": "Pets"
+  },
 
-	"common": {
-		"load": "Load",
-		"loading": "Loading"
-	},
+  "common": {
+    "load": "Load",
+    "loading": "Loading"
+  },
 
-	"footer": {
-		"copyright": "©2004 Blizzard Entertainment, Inc. All rights reserved. World of Warcraft, Warcraft and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entertainment, Inc. in the U.S. and/or other countries."
-	}
+  "footer": {
+    "copyright": "©2004 Blizzard Entertainment, Inc. All rights reserved. World of Warcraft, Warcraft and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entertainment, Inc. in the U.S. and/or other countries."
+  }
 }

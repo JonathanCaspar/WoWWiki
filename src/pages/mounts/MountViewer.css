@@ -1,22 +1,18 @@
-.loader{
-	display:inline;
+.mount-viewer {
+  padding: 10px;
+  width: 350px;
+  height: fit-content;
 }
 
-.mount-viewer{
-	padding: 10px;
-	background: #06002f;
-	    width: 350px;
-    height: fit-content;
+.mount-viewer img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.mount-viewer img{
-	width: 100%;
+.mount-name {
+  font-size: 15pt;
 }
 
-.mount-name{
-	font-size: 15pt;
-}
-
-.mount-desc{
-	font-size: 10pt;
+.mount-desc {
+  font-size: 10pt;
 }

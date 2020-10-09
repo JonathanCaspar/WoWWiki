@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 // Pages
 import Characters from './pages/characters/Characters'
@@ -20,14 +20,14 @@ function App() {
         <Nav />
         <div className="app-body">
           <Switch>
-            <Route exact path="/" component={Characters} />
+            <Route exact path="/" component={Mounts} />
             <Route path="/characters" component={Characters} />
             <Route path="/mounts" component={Mounts} />
             <Route path="/pets" component={Pets} />
           </Switch>
         </div>
       </Router>
-
+      <div className="spacer" />
       <Footer />
     </div>
   )

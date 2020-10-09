@@ -1,14 +1,13 @@
 import React from 'react'
 import Loader from 'react-loader-spinner'
-import { useTranslation } from 'react-i18next'
+import './LoadingSpinner.css'
 
-const LoadingSpinner = () => {
-  const { t } = useTranslation('common')
+const LoadingSpinner = ({ text }) => {
   return (
-    <div>
-      <span>{t('common.loading')} </span>
+    <div className="loader">
+      <span>{text} </span>
       <Loader
-        className="loader"
+        className="loader-spinner"
         type="Oval"
         color="#00BFFF"
         height={15}

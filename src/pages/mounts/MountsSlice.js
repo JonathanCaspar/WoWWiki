@@ -4,10 +4,11 @@ import { client } from '../../api/BlizzardAPI'
 const initialState = {
   data: [],
   status: 'idle',
-  error: 'null',
-  selectedMountId: null,
+  error: null,
+  selectedMount: null,
+  selectedMountAsset: '',
   selectedMountStatus: 'idle',
-  selectedMountError: 'null',
+  selectedMountError: null,
 }
 
 // Async thunk to fetch mounts list
@@ -19,7 +20,7 @@ export const fetchMounts = createAsyncThunk('mounts/fetchMounts', async () => {
 // Async thunk to fetch mount data by its id
 export const fetchMountById = createAsyncThunk(
   'mounts/fetchMountById',
-  async (mountId, dispatch) => {
+  async (mountId) => {
     const response = await client.getMountById(
       mountId,
       'eu',
@@ -30,7 +31,7 @@ export const fetchMountById = createAsyncThunk(
   }
 )
 
-// Async thunk to fetch asset its id
+// Async thunk to fetch asset by mount object (received by fetchMountById())
 export const fetchMountAsset = createAsyncThunk(
   'mounts/fetchMountAsset',
   async (mount) => {
@@ -46,9 +47,11 @@ const MountsSlice = createSlice({
   name: 'mounts',
   initialState,
   reducers: {
-    mountSelected(state, action) {
-      state.selectedMountId = action.payload
+    newMountClicked(state) {
+      state.selectedMount = null
+      state.selectedMountAsset = ''
       state.selectedMountStatus = 'idle'
+      state.selectedMountError = null
     },
   },
   extraReducers: {
@@ -74,10 +77,13 @@ const MountsSlice = createSlice({
       state.selectedMountStatus = 'failed'
       state.selectedMountError = action.payload
     },
+    [fetchMountAsset.fulfilled]: (state, action) => {
+      state.selectedMountAsset = action.payload.assets['0'].value
+    },
   },
 })
 
-export const { mountSelected } = MountsSlice.actions
+export const { newMountClicked } = MountsSlice.actions
 
 export default MountsSlice.reducer
 
