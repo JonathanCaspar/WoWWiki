@@ -20,7 +20,7 @@ function App() {
         <Nav />
         <div className="app-body">
           <Switch>
-            <Route exact path="/" component={Mounts} />
+            <Route path="/" component={Mounts} />
             <Route path="/characters" component={Characters} />
             <Route path="/mounts" component={Mounts} />
             <Route path="/pets" component={Pets} />

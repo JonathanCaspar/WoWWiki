@@ -3,18 +3,27 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import { fetchMounts } from './MountsSlice' // Actions
+import { fetchMounts, mountSearched } from './MountsSlice' // Actions
 //import { selectAllMounts } from './MountsSlice' // Selectors
 
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import './MountsList.css'
+import SearchBar from '../../components/SearchBar/SearchBar'
 
 function MountsList() {
   const dispatch = useDispatch()
   const { t } = useTranslation('common')
 
-  const mounts = useSelector((state) => state.mounts.data)
+  const mounts = useSelector((state) =>
+    state.mounts.data.filter((mount) =>
+      mount.name.toLowerCase().includes(state.mounts.searchText)
+    )
+  )
   const status = useSelector((state) => state.mounts.status)
+
+  const handleSearch = (query) => {
+    dispatch(mountSearched(query))
+  }
 
   // Fetching mounts list
   useEffect(() => {
@@ -39,6 +48,11 @@ function MountsList() {
     renderedList = <div>Couldn't load mounts</div>
   }
 
-  return <div className="nav-list section">{renderedList}</div>
+  return (
+    <div className="nav-list section">
+      <SearchBar onChangeCallback={handleSearch} />
+      {renderedList}
+    </div>
+  )
 }
 export default MountsList

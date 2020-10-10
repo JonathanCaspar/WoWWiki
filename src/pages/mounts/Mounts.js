@@ -6,7 +6,7 @@ import MountsList from './MountsList'
 import MountViewer from './MountViewer'
 import './Mounts.css'
 
-export const Mounts = () => {
+function Mounts() {
   const { t } = useTranslation('common')
 
   return (

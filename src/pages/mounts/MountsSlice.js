@@ -3,6 +3,7 @@ import { client } from '../../api/BlizzardAPI'
 
 const initialState = {
   data: [],
+  searchText: '',
   status: 'idle',
   error: null,
   selectedMount: null,
@@ -53,6 +54,9 @@ const MountsSlice = createSlice({
       state.selectedMountStatus = 'idle'
       state.selectedMountError = null
     },
+    mountSearched(state, action) {
+      state.searchText = action.payload
+    },
   },
   extraReducers: {
     [fetchMounts.pending]: (state) => {
@@ -83,7 +87,7 @@ const MountsSlice = createSlice({
   },
 })
 
-export const { newMountClicked } = MountsSlice.actions
+export const { newMountClicked, mountSearched } = MountsSlice.actions
 
 export default MountsSlice.reducer
 

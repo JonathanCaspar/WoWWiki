@@ -49,10 +49,8 @@ class Nav extends Component {
           </div>
           <div className="spacer" />
           <div className="nav-links">
-            <Link to="/characters">{t('characters.title')}</Link>
-
             <Link to="/mounts">{t('mounts.title')}</Link>
-
+            <Link to="/characters">{t('characters.title')}</Link>
             <Link to="/pets">{t('pets.title')}</Link>
           </div>
 

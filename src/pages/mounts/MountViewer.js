@@ -7,7 +7,7 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import './MountViewer.css'
 import { useTranslation } from 'react-i18next'
 
-export function MountViewer({ match }) {
+function MountViewer({ match }) {
   const { mountId } = match.params
 
   const dispatch = useDispatch()
