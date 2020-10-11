@@ -6,7 +6,7 @@ import Mounts from './pages/mounts/Mounts'
 import Pets from './pages/pets/Pets'
 
 // Components
-import Nav from './components/Nav/Nav'
+import Navigation from './components/Nav/Navigation'
 import Footer from './components/Footer/Footer'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -17,17 +17,16 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <Nav />
+        <Navigation />
         <div className="app-body">
           <Switch>
-            <Route path="/" component={Mounts} />
+            <Route exact path="/" component={Mounts} />
             <Route path="/characters" component={Characters} />
             <Route path="/mounts" component={Mounts} />
             <Route path="/pets" component={Pets} />
           </Switch>
         </div>
       </Router>
-      <div className="spacer" />
       <Footer />
     </div>
   )

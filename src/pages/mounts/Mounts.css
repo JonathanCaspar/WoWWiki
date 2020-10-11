@@ -1,12 +1,12 @@
-.nav-list {
-  width: 35%;
+.Mounts {
+  text-align: left;
+  padding: 5px 0;
+}
+
+.Mounts h2 {
+  margin-left: 13px;
 }
 
 .mounts-nav-container {
   display: flex;
-  height: 425px;
-}
-
-.Mounts {
-  text-align: left;
 }

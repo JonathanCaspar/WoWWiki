@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchMountById, fetchMountAsset, newMountClicked } from './MountsSlice' // Actions
 //import { selectMountById } from './MountsSlice' // Selectors
 
-import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import './MountViewer.css'
+import Spinner from 'react-bootstrap/Spinner'
+
 import { useTranslation } from 'react-i18next'
 
 function MountViewer({ match }) {
@@ -41,7 +42,12 @@ function MountViewer({ match }) {
   let renderedMount
 
   if (mountStatus === 'loading') {
-    renderedMount = <LoadingSpinner text={t('common.loading')} />
+    renderedMount = (
+      <div className="center-div">
+        <Spinner animation="border" role="status" size="sm" />
+        <span>{t('common.loading')} ...</span>
+      </div>
+    )
   } else if (mountStatus === 'succeeded') {
     renderedMount = (
       <div>
@@ -54,6 +60,6 @@ function MountViewer({ match }) {
     renderedMount = <div>The mount id {mountId} does not exist.</div>
   }
 
-  return <div className="mount-viewer section">{renderedMount}</div>
+  return <div className="mount-viewer col-8 col-sm-8">{renderedMount}</div>
 }
 export default MountViewer

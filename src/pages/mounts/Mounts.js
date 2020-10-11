@@ -14,9 +14,7 @@ function Mounts() {
       <h2>{t('mounts.title')}</h2>
       <div className="mounts-nav-container">
         <MountsList />
-        <div className="spacer" />
         <Route path="/mounts/:mountId" component={MountViewer} />
-        <div className="spacer" />
       </div>
     </div>
   )

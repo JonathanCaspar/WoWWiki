@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import Spinner from 'react-bootstrap/Spinner'
 
 import { fetchMounts, mountSearched } from './MountsSlice' // Actions
 //import { selectAllMounts } from './MountsSlice' // Selectors
 
-import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import './MountsList.css'
 import SearchBar from '../../components/SearchBar/SearchBar'
 
@@ -33,7 +33,12 @@ function MountsList() {
   let renderedList
 
   if (status === 'loading') {
-    renderedList = <LoadingSpinner text={t('common.loading')} />
+    renderedList = (
+      <div className="center-div">
+        <Spinner animation="border" role="status" size="sm" />
+        <span>{t('common.loading')} ...</span>
+      </div>
+    )
   } else if (status === 'succeeded') {
     const orderedMounts = mounts.slice().sort((a, b) => {
       return a.name.localeCompare(b.name)
@@ -49,9 +54,9 @@ function MountsList() {
   }
 
   return (
-    <div className="nav-list section">
+    <div className="col-4 col-sm-4">
       <SearchBar onChangeCallback={handleSearch} />
-      {renderedList}
+      <div className="nav-list">{renderedList}</div>
     </div>
   )
 }

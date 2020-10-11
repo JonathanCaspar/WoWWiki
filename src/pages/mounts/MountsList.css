@@ -1,11 +1,9 @@
 .nav-list {
   font-size: 10pt;
-  text-align: left;
-  padding: 10px;
-  margin-right: 10px;
+  padding: 5px 0;
   cursor: pointer;
   overflow-y: auto;
-  min-width: 240px;
+  height: 390px;
 }
 
 .nav-list-row {
@@ -17,4 +15,6 @@
 }
 .nav-list-row:hover {
   background-color: grey;
+  text-decoration: none;
+  color: white;
 }

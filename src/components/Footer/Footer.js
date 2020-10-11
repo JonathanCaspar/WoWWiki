@@ -1,10 +1,13 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import './Footer.css'
 
 function Footer() {
-	const { t } = useTranslation('common')
-	return <div className="footer">{t('footer.copyright')}</div>
+  const { t } = useTranslation('common')
+  return (
+    <footer className="py-1 bg-dark text-white" style={{ fontSize: '7pt' }}>
+      {t('footer.copyright')}
+    </footer>
+  )
 }
 
 export default Footer
