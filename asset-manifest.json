@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/WoWWiki/static/css/main.919c6171.chunk.css",
-    "main.js": "/WoWWiki/static/js/main.43be1f7d.chunk.js",
-    "main.js.map": "/WoWWiki/static/js/main.43be1f7d.chunk.js.map",
+    "main.css": "/WoWWiki/static/css/main.e9cae1e0.chunk.css",
+    "main.js": "/WoWWiki/static/js/main.38f2d155.chunk.js",
+    "main.js.map": "/WoWWiki/static/js/main.38f2d155.chunk.js.map",
     "runtime-main.js": "/WoWWiki/static/js/runtime-main.041defe0.js",
     "runtime-main.js.map": "/WoWWiki/static/js/runtime-main.041defe0.js.map",
     "static/css/2.d9ad5f5c.chunk.css": "/WoWWiki/static/css/2.d9ad5f5c.chunk.css",
-    "static/js/2.ba6a9f60.chunk.js": "/WoWWiki/static/js/2.ba6a9f60.chunk.js",
-    "static/js/2.ba6a9f60.chunk.js.map": "/WoWWiki/static/js/2.ba6a9f60.chunk.js.map",
+    "static/js/2.22750913.chunk.js": "/WoWWiki/static/js/2.22750913.chunk.js",
+    "static/js/2.22750913.chunk.js.map": "/WoWWiki/static/js/2.22750913.chunk.js.map",
     "index.html": "/WoWWiki/index.html",
-    "precache-manifest.70a91ebec40720cfa4cc8d0674896ca6.js": "/WoWWiki/precache-manifest.70a91ebec40720cfa4cc8d0674896ca6.js",
+    "precache-manifest.0c317f422783b4f4259b2ad5e3699e5a.js": "/WoWWiki/precache-manifest.0c317f422783b4f4259b2ad5e3699e5a.js",
     "service-worker.js": "/WoWWiki/service-worker.js",
     "static/css/2.d9ad5f5c.chunk.css.map": "/WoWWiki/static/css/2.d9ad5f5c.chunk.css.map",
-    "static/css/main.919c6171.chunk.css.map": "/WoWWiki/static/css/main.919c6171.chunk.css.map",
-    "static/js/2.ba6a9f60.chunk.js.LICENSE.txt": "/WoWWiki/static/js/2.ba6a9f60.chunk.js.LICENSE.txt",
+    "static/css/main.e9cae1e0.chunk.css.map": "/WoWWiki/static/css/main.e9cae1e0.chunk.css.map",
+    "static/js/2.22750913.chunk.js.LICENSE.txt": "/WoWWiki/static/js/2.22750913.chunk.js.LICENSE.txt",
     "static/media/favicon.svg": "/WoWWiki/static/media/favicon.158b0ed2.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.041defe0.js",
     "static/css/2.d9ad5f5c.chunk.css",
-    "static/js/2.ba6a9f60.chunk.js",
-    "static/css/main.919c6171.chunk.css",
-    "static/js/main.43be1f7d.chunk.js"
+    "static/js/2.22750913.chunk.js",
+    "static/css/main.e9cae1e0.chunk.css",
+    "static/js/main.38f2d155.chunk.js"
   ]
 }
