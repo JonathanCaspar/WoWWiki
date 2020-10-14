@@ -1,11 +1,10 @@
 html,
 body {
   height: 100%;
+  font: 400 24px/21px 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 .app {
   text-align: center;
-  font: 400 16px/20px 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-
   display: flex;
   min-height: 100vh;
   flex-direction: column;

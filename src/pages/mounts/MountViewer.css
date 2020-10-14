@@ -4,13 +4,17 @@
 
 .mount-viewer img {
   max-width: 100%;
-  height: 345px;
+  height: 435px;
+  margin: 8px 0;
 }
 
 .mount-name {
-  font-size: 15pt;
+  font-size: 23pt;
+  padding-bottom: 12px;
+  margin-bottom: 11px;
+  border-bottom: solid 1px;
 }
 
 .mount-desc {
-  font-size: 10pt;
+  font-size: 12pt;
 }

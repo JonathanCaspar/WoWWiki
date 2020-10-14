@@ -7,7 +7,6 @@ import favicon from '../../assets/favicon.svg'
 import Button from 'react-bootstrap/Button'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import Spinner from 'react-bootstrap/Spinner'
 
 function Navigation() {
   const [lang, setLang] = useState('en')
@@ -28,7 +27,7 @@ function Navigation() {
     <Navbar
       bg="dark"
       variant="dark"
-      expand="sm"
+      expand="lg"
       className="nav-container section"
     >
       <Navbar.Brand>

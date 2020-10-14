@@ -1,22 +1,33 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchMountById, fetchMountAsset, newMountClicked } from './MountsSlice' // Actions
+import { fetchMountData, newMountClicked } from './MountsSlice' // Actions
 //import { selectMountById } from './MountsSlice' // Selectors
+import { getLocaleByLang } from '../../api/BlizzardAPI'
+import { useTranslation } from 'react-i18next'
 
 import './MountViewer.css'
-import Spinner from 'react-bootstrap/Spinner'
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 
-import { useTranslation } from 'react-i18next'
+const Mount = ({ name, description, asset }) => {
+  let { i18n } = useTranslation('common')
+  let lang     = getLocaleByLang(i18n.language || 'en')
+
+  return (
+    <div>
+      <div className="mount-name">{name[lang]}</div>
+      <div className="mount-desc">{description[lang]}</div>
+      <img src={asset} alt={name[lang]} />
+    </div>
+  )
+}
 
 function MountViewer({ match }) {
   const { mountId } = match.params
 
-  const dispatch = useDispatch()
-  const { t } = useTranslation('common')
-
-  const mount = useSelector((state) => state.mounts.selectedMount)
-  const mountStatus = useSelector((state) => state.mounts.selectedMountStatus)
-  const mountAsset = useSelector((state) => state.mounts.selectedMountAsset)
+  const dispatch    = useDispatch()
+  const mount       = useSelector((state) => state.mounts.mount)
+  const mountAsset  = useSelector((state) => state.mounts.mountAsset)
+  const mountStatus = useSelector((state) => state.mounts.mountStatus)
 
   // When mountId (prop passed by router) changes : dispatch newMountClicked
   useEffect(() => {
@@ -28,38 +39,24 @@ function MountViewer({ match }) {
   // If mount info hasn't been fetched, fetch it
   useEffect(() => {
     if (mountStatus === 'idle') {
-      dispatch(fetchMountById(mountId))
+      dispatch(fetchMountData(mountId))
     }
   }, [mountStatus, dispatch])
 
-  // When selected mount exists : fetch mount asset
-  useEffect(() => {
-    if (mount) {
-      dispatch(fetchMountAsset(mount))
-    }
-  }, [mount, dispatch])
-
   let renderedMount
 
-  if (mountStatus === 'loading') {
+  if (mountStatus === 'loading') renderedMount = <LoadingSpinner />
+  else if (mountStatus === 'succeeded') {
     renderedMount = (
-      <div className="center-div">
-        <Spinner animation="border" role="status" size="sm" />
-        <span>{t('common.loading')} ...</span>
-      </div>
+      <Mount
+        name        = {mount.name}
+        description = {mount.description}
+        asset       = {mountAsset}
+      />
     )
-  } else if (mountStatus === 'succeeded') {
-    renderedMount = (
-      <div>
-        <div className="mount-name">{mount.name}</div>
-        <div className="mount-desc">{mount.description}</div>
-        <img src={mountAsset} alt={mount.name} />
-      </div>
-    )
-  } else if (mountStatus === 'failed') {
+  } else if (mountStatus === 'failed')
     renderedMount = <div>The mount id {mountId} does not exist.</div>
-  }
 
-  return <div className="mount-viewer col-8 col-sm-8">{renderedMount}</div>
+  return <div className="mount-viewer col-md-6 col-lg-9">{renderedMount}</div>
 }
 export default MountViewer

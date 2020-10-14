@@ -1,9 +1,11 @@
 .nav-list {
-  font-size: 10pt;
   padding: 5px 0;
   cursor: pointer;
   overflow-y: auto;
-  height: 390px;
+  height: 492px;
+  font-size: 12pt;
+
+  margin-top: 9px;
 }
 
 .nav-list-row {
