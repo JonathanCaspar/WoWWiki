@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import favicon from '../../assets/favicon.svg'
 
-//import './Nav.css'
-import Button from 'react-bootstrap/Button'
+import Button from '@material-ui/core/Button'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
@@ -28,7 +27,8 @@ function Navigation() {
       bg="dark"
       variant="dark"
       expand="lg"
-      className="nav-container section"
+      className="nav-container fixed-top"
+      collapseOnSelect="true"
     >
       <Navbar.Brand>
         <img src={favicon} alt="logo" />
@@ -37,17 +37,20 @@ function Navigation() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse className="justify-content-end">
         <Nav className="justify-content-end">
-          <Link className="nav-link" to="/mounts">
+          <Nav.Link as={Link} className="nav-link" href="/mounts" to="/mounts">
             {t('mounts.title')}
-          </Link>
-          <Link className="nav-link" to="/characters">
-            {t('characters.title')}
-          </Link>
-          <Link className="nav-link" to="/pets">
+          </Nav.Link>
+          <Nav.Link as={Link} className="nav-link" href="/pets" to="/pets">
             {t('pets.title')}
-          </Link>
+          </Nav.Link>
 
-          <Button onClick={handleLangChange}>{getNextLang(lang)}</Button>
+          <Button
+            onClick={handleLangChange}
+            variant="contained"
+            style={{ outline: 'none', width: 'fit-content', margin: '0 auto' }}
+          >
+            {getNextLang(lang)}
+          </Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

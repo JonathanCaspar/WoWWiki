@@ -1,13 +1,10 @@
-.Mounts {
-  text-align: left;
-  padding: 5px 0;
-}
-
-.Mounts h2 {
+.mounts-container h2 {
   font-size: 27pt;
   margin-left: 13px;
 }
 
-.mounts-nav-container {
+.mounts-container {
   display: flex;
+  text-align: left;
+  padding: 5px 0;
 }

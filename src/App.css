@@ -1,7 +1,7 @@
 html,
 body {
   height: 100%;
-  font: 400 24px/21px 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font: 400 24px/21px "Roboto", "Helvetica", "Arial", sans-serif;
 }
 .app {
   text-align: center;
@@ -12,6 +12,7 @@ body {
 
 .app-body {
   flex: 1;
+  margin-top: 95px;
 }
 
 .center-div {
@@ -19,4 +20,12 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.badge-label{
+  font-style: italic;
+}
+
+button.MuiIconButton-root{
+  outline: 0;
 }

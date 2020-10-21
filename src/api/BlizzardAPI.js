@@ -4,6 +4,8 @@ const client_id = 'e1d9b7f970f44229bda1942d09d3ce97'
 const client_secret = '68t8Dc1UBHEX3oQC3nMLXKINoQ7Mz4Ik'
 const BLIZZARD_ENDPOINT = 'https://eu.api.blizzard.com'
 
+export const LOCALE = {fr : 'fr_FR', en : 'en_US'}
+
 async function fetchAuthToken() {
   return await axios.post(
     'https://us.battle.net/oauth/token',
@@ -56,6 +58,7 @@ async function getAuthToken() {
 }
 
 export async function client(endpoint, { body, ...customConfig } = {}) {
+  if(!endpoint) return Promise.reject("Invalid endpoint")
   const token = await getAuthToken()
   const headers = { 'Content-Type': 'text/plain' }
 
@@ -119,9 +122,9 @@ client.getCreatureAssetById = async function (spellId, region, namespace, locale
 export function getLocaleByLang(lang) {
   switch (lang) {
     case 'fr':
-      return 'fr_FR'
+      return LOCALE.fr
     case 'en':
-      return 'en_US'
+      return LOCALE.en
     default:
       return ''
   }

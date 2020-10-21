@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import { fetchMountIndex, mountSearched } from './MountsSlice' // Actions
+import {
+  fetchMountIndex,
+  mountSearched,
+  selectCurrentMount,
+} from './MountsSlice' // Actions
 import { selectFilteredMounts } from './MountsSlice' // Selectors
 import { getLocaleByLang } from '../../api/BlizzardAPI'
 
@@ -13,16 +17,19 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 
 function MountsList() {
   const dispatch = useDispatch()
-  const { i18n } = useTranslation('common')
-  const lang     = getLocaleByLang(i18n.language || 'en')
-  const status   = useSelector((state) => state.mounts.status)
-  const mounts   = useSelector((state) => selectFilteredMounts(state,lang))
+  const { t, i18n } = useTranslation('common')
+  const lang = i18n.language
+  const locale = getLocaleByLang(lang || 'en')
+  const status = useSelector((state) => state.mounts.status)
+  const searchText = useSelector((state) => state.mounts.searchText)
+  const mounts = useSelector((state) => selectFilteredMounts(state, locale))
+  const selectedMount = useSelector((state) => selectCurrentMount(state))
 
   const handleSearch = (query) => {
     dispatch(mountSearched(query))
   }
 
-  // Fetching mounts list
+  // Fetch mounts list
   useEffect(() => {
     if (status === 'idle') dispatch(fetchMountIndex())
   }, [status, dispatch])
@@ -31,20 +38,35 @@ function MountsList() {
 
   if (status === 'loading') renderedList = <LoadingSpinner />
   else if (status === 'succeeded') {
-    const orderedMounts = mounts.slice().sort((a, b) => {
-      return a.name[lang].localeCompare(b.name[lang])
-    })
+    if (!mounts.length) {
+      renderedList = (
+        <p>
+          {t('common.no_result_for')} "{searchText}"
+        </p>
+      )
+    } else {
+      renderedList = mounts.map((mount) => {
+        let selectedTag = ''
+        if (selectedMount)
+          selectedTag = selectedMount.id === mount.id ? 'mount-selected' : ''
 
-    renderedList = orderedMounts.map((mount) => (
-      <Link key={mount.id} className="nav-list-row" to={`/mounts/${mount.id}`}>
-        {mount.name[lang]}
-      </Link>
-    ))
+        return (
+          <Link
+            key={mount.id}
+            to={`/mounts/${mount.id}`}
+            id={selectedTag}
+            data-wowhead={`https://${lang}.wowhead.com/mount=${mount.id}`}
+          >
+            {mount.name[locale]}
+          </Link>
+        )
+      })
+    }
   } else if (status === 'failed') renderedList = <div>Couldn't load mounts</div>
 
   return (
-    <div className="col-md-6 col-lg-3">
-      <SearchBar onChangeCallback={handleSearch} />
+    <div className="col-sm-4 col-md-4 col-lg-3">
+      <SearchBar onChange={handleSearch} />
       <div className="nav-list">{renderedList}</div>
     </div>
   )

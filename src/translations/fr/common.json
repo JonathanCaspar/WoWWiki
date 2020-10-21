@@ -11,7 +11,10 @@
   },
   "common": {
     "load": "Charger",
-    "loading": "Chargement"
+    "loading": "Chargement",
+    "search": "Rechercher",
+    "source": "Source",
+    "no_result_for": "Pas de résultats pour"
   },
   "footer": {
     "copyright": "©2004 Blizzard Entertainment, Inc. Tous droits réservés. World of Warcraft, Warcraft et Blizzard Entertainment sont des marques ou des marques déposées de Blizzard Entertainment, Inc. aux États-Unis d’Amérique et/ou dans d’autres pays."

@@ -12,7 +12,10 @@
 
   "common": {
     "load": "Load",
-    "loading": "Loading"
+    "loading": "Loading",
+    "search" : "Search",
+    "source" : "Source",
+    "no_result_for": "No results for"
   },
 
   "footer": {

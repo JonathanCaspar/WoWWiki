@@ -1,14 +1,29 @@
 .mount-viewer {
   padding: 10px;
 }
-
-.mount-viewer img {
+#mount-asset{
   max-width: 100%;
   height: 435px;
   margin: 8px 0;
 }
 
-.mount-name {
+.mount-label-img{
+  width: 33px;
+  position: relative;
+  top: -2px;
+  margin-right: 3px;
+}
+.badge span {
+  /*vertical-align: top;*/
+  line-height: 30px;
+}
+.mount-badges .badge{
+  height: 40px;
+  margin-right: 4px;
+  vertical-align: middle
+}
+
+.mount-title {
   font-size: 23pt;
   padding-bottom: 12px;
   margin-bottom: 11px;
@@ -17,4 +32,6 @@
 
 .mount-desc {
   font-size: 12pt;
+  margin-top: 18px;
+  margin-bottom: 5px;
 }

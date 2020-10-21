@@ -9,7 +9,7 @@ function LoadingSpinner() {
   return (
     <div className="loading-spinner center-div">
       <Spinner animation="border" role="status" size="sm" />
-      <span>{t('common.loading')} ...</span>
+      <span>{t('common.loading')}&nbsp; ...</span>
     </div>
   )
 }

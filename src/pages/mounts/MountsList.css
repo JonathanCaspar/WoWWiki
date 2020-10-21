@@ -4,19 +4,27 @@
   overflow-y: auto;
   height: 492px;
   font-size: 12pt;
-
   margin-top: 9px;
 }
 
-.nav-list-row {
+.nav-list > a {
   display: block;
-  padding: 0 4px;
-  border-radius: 5px;
+  padding: 3px 4px;
+  border-bottom: solid 1px;
   text-decoration: none;
   color: inherit;
 }
-.nav-list-row:hover {
+
+.nav-list > a:last-child {
+  border: none;
+}
+.nav-list > a:hover {
   background-color: grey;
   text-decoration: none;
   color: white;
+}
+
+#mount-selected {
+  background: grey;
+    color: white;
 }
