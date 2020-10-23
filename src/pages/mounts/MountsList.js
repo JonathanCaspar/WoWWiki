@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import {
   fetchMountIndex,
   mountSearched,
+  newMountClicked,
   selectCurrentMount,
 } from './MountsSlice' // Actions
 import { selectFilteredMounts } from './MountsSlice' // Selectors
@@ -31,8 +32,9 @@ function MountsList() {
 
   // Fetch mounts list
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchMountIndex())
-  }, [status, dispatch])
+    dispatch(fetchMountIndex())
+  }, [dispatch])
+
 
   let renderedList
 
@@ -46,9 +48,7 @@ function MountsList() {
       )
     } else {
       renderedList = mounts.map((mount) => {
-        let selectedTag = ''
-        if (selectedMount)
-          selectedTag = selectedMount.id === mount.id ? 'mount-selected' : ''
+        let selectedTag = (selectedMount?.id === mount.id) ? 'mount-selected' : ''
 
         return (
           <Link
@@ -56,6 +56,7 @@ function MountsList() {
             to={`/mounts/${mount.id}`}
             id={selectedTag}
             data-wowhead={`https://${lang}.wowhead.com/mount=${mount.id}`}
+            onClick={() => dispatch(newMountClicked())}
           >
             {mount.name[locale]}
           </Link>

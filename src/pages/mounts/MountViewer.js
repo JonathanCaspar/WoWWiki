@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Badge } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchMountData, newMountClicked } from './MountsSlice' // Actions
-//import { selectMountById } from './MountsSlice' // Selectors
+import { fetchMountData } from './MountsSlice' // Actions
 import { getLocaleByLang } from '../../api/BlizzardAPI'
 import allianceImg from '../../assets/Alliance.png'
 import hordeImg from '../../assets/Horde.png'
@@ -80,19 +79,12 @@ function MountViewer({ match }) {
   const mountAsset = useSelector((state) => state.mounts.mountAsset)
   const mountStatus = useSelector((state) => state.mounts.mountStatus)
 
-  // When mountId (prop passed by router) changes : dispatch newMountClicked
-  useEffect(() => {
-    if (mountStatus !== 'idle') {
-      dispatch(newMountClicked())
-    }
-  }, [mountId, dispatch])
-
-  // If mount info hasn't been fetched, fetch it
+  // Fetch mount data when no mount is loaded and mountStatus allows it
   useEffect(() => {
     if (mountStatus === 'idle') {
       dispatch(fetchMountData(mountId))
     }
-  }, [mountStatus, dispatch])
+  }, [mountStatus, mountId, dispatch])
 
   let renderedMount
 

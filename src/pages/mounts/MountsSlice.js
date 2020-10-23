@@ -60,7 +60,7 @@ export const fetchMountAsset = createAsyncThunk(
   'mounts/fetchMountAsset',
   async (mount) => {
     if (mount) {
-      const response = await client(mount.creature_displays['0'].key.href)
+      const response = await client(mount?.creature_displays['0'].key.href)
       return response.data
     } else
       return Promise.reject('Need a mount object in order to fetch its asset')

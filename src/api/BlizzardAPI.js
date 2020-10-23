@@ -126,6 +126,6 @@ export function getLocaleByLang(lang) {
     case 'en':
       return LOCALE.en
     default:
-      return ''
+      return LOCALE.en
   }
 }
