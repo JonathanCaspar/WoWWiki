@@ -16,7 +16,7 @@ import { Badge } from 'react-bootstrap'
 function App() {
   return (
     <div className="app">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Navigation />
         <div className="app-body">
           <Switch>
