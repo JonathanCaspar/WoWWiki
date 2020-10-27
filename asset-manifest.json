@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/WoWWiki/static/css/main.4dbb7dfb.chunk.css",
-    "main.js": "/WoWWiki/static/js/main.1c39ed1a.chunk.js",
-    "main.js.map": "/WoWWiki/static/js/main.1c39ed1a.chunk.js.map",
+    "main.js": "/WoWWiki/static/js/main.d5888662.chunk.js",
+    "main.js.map": "/WoWWiki/static/js/main.d5888662.chunk.js.map",
     "runtime-main.js": "/WoWWiki/static/js/runtime-main.041defe0.js",
     "runtime-main.js.map": "/WoWWiki/static/js/runtime-main.041defe0.js.map",
     "static/css/2.2a86faee.chunk.css": "/WoWWiki/static/css/2.2a86faee.chunk.css",
     "static/js/2.efee0e43.chunk.js": "/WoWWiki/static/js/2.efee0e43.chunk.js",
     "static/js/2.efee0e43.chunk.js.map": "/WoWWiki/static/js/2.efee0e43.chunk.js.map",
     "index.html": "/WoWWiki/index.html",
-    "precache-manifest.525be271c204d8ef45fae48b53b894a9.js": "/WoWWiki/precache-manifest.525be271c204d8ef45fae48b53b894a9.js",
+    "precache-manifest.f2ee2b3b476f600386dda6cb189b86fd.js": "/WoWWiki/precache-manifest.f2ee2b3b476f600386dda6cb189b86fd.js",
     "service-worker.js": "/WoWWiki/service-worker.js",
     "static/css/2.2a86faee.chunk.css.map": "/WoWWiki/static/css/2.2a86faee.chunk.css.map",
     "static/css/main.4dbb7dfb.chunk.css.map": "/WoWWiki/static/css/main.4dbb7dfb.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.2a86faee.chunk.css",
     "static/js/2.efee0e43.chunk.js",
     "static/css/main.4dbb7dfb.chunk.css",
-    "static/js/main.1c39ed1a.chunk.js"
+    "static/js/main.d5888662.chunk.js"
   ]
 }

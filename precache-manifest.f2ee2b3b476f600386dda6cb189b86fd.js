@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "933edd12a559a30aa17632997ccf598d",
+    "revision": "7083f455b3f4b9eb72440e12dbf0de65",
     "url": "/WoWWiki/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/WoWWiki/static/css/2.2a86faee.chunk.css"
   },
   {
-    "revision": "4d257399f4d5a4759eae",
+    "revision": "42eaefdcc03d99d8bfcc",
     "url": "/WoWWiki/static/css/main.4dbb7dfb.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/WoWWiki/static/js/2.efee0e43.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4d257399f4d5a4759eae",
-    "url": "/WoWWiki/static/js/main.1c39ed1a.chunk.js"
+    "revision": "42eaefdcc03d99d8bfcc",
+    "url": "/WoWWiki/static/js/main.d5888662.chunk.js"
   },
   {
     "revision": "e04f7a42a60802750e72",
