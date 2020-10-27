@@ -18,5 +18,7 @@
   },
   "footer": {
     "copyright": "©2004 Blizzard Entertainment, Inc. Tous droits réservés. World of Warcraft, Warcraft et Blizzard Entertainment sont des marques ou des marques déposées de Blizzard Entertainment, Inc. aux États-Unis d’Amérique et/ou dans d’autres pays."
-  }
+  },
+
+  "current_locale": "fr"
 }

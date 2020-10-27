@@ -1,4 +1,9 @@
-import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+  unwrapResult,
+} from '@reduxjs/toolkit'
 import { client, LOCALE } from '../../api/BlizzardAPI'
 
 const mountsInitialState = {
@@ -16,7 +21,7 @@ const currentMountInitialState = {
 
 const initialState = { ...mountsInitialState, ...currentMountInitialState }
 
-// Async thunk to fetch mounts list
+// async thunk to fetch mounts list
 export const fetchMountIndex = createAsyncThunk(
   'mounts/fetchMountIndex',
   async () => {
@@ -29,24 +34,25 @@ export const fetchMountData = createAsyncThunk(
   'mounts/fetchMountData',
   async (mountId, thunkAPI) => {
     let dispatch = thunkAPI.dispatch
-    let getState = thunkAPI.getState
 
-    // Fetching mount data first
-    if (mountId >= 0)
-      return await dispatch(fetchMount(mountId)).then(
-        () => {
-          let mount = getState().mounts.mount
-          return Promise.all([dispatch(fetchMountAsset(mount))])
-        },
-        () => {
-          return Promise.reject('Failed to fetchMount')
-        }
-      )
-    else return Promise.reject(`Mount id ${mountId} passed is invalid.`)
+    // fetch mount first
+    if (mountId >= 0) {
+      return dispatch(fetchMount(mountId))
+        .then(unwrapResult)
+        .then(
+          // fetch mount asset if mount received
+          (mount) => {
+            return dispatch(fetchMountAsset(mount))
+          },
+          (error) => {
+            return Promise.reject(`Failed to fetchMount : ${error}`)
+          }
+        )
+    } else return Promise.reject(`Mount id ${mountId} passed is invalid.`)
   }
 )
 
-// Async thunk to fetch mount data by its id
+// async thunk to fetch mount data by its id
 export const fetchMount = createAsyncThunk(
   'mounts/fetchMount',
   async (mountId) => {
@@ -55,7 +61,7 @@ export const fetchMount = createAsyncThunk(
   }
 )
 
-// Async thunk to fetch asset by mount object (received by fetchMount())
+// async thunk to fetch asset by mount object (received by fetchMount())
 export const fetchMountAsset = createAsyncThunk(
   'mounts/fetchMountAsset',
   async (mount) => {
@@ -79,7 +85,7 @@ const MountsSlice = createSlice({
     },
   },
   extraReducers: {
-    // Fetch mounts index
+    // fetch mounts index
     [fetchMountIndex.pending]: (state) => {
       state.status = 'loading'
     },
@@ -92,23 +98,17 @@ const MountsSlice = createSlice({
       state.error = action.error
     },
 
-    // Fetch mount information
-    [fetchMount.fulfilled]: (state, action) => {
-      state.mount = action.payload
-    },
-
-    // Fetch all data (information, asset...) of selected mount
+    // fetch all data (information, asset...) of selected mount
     [fetchMountData.pending]: (state) => {
       state.mountStatus = 'loading'
     },
     [fetchMountData.fulfilled]: (state, action) => {
-      // Payload['0'] is the first promise payload handled by fetchMountData
       state.mountStatus = 'succeeded'
-      state.mountAsset = action.payload['0'].payload.assets['0'].value
+      state.mount = action.payload.meta.arg // fetched mount info
+      state.mountAsset = action.payload.payload.assets['0'].value // first promise payload handled by fetchMountData
     },
     [fetchMountData.rejected]: (state, action) => {
       state.mountStatus = 'failed'
-      console.log(action)
       state.mountError = action.error
     },
   },

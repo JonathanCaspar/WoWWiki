@@ -32,8 +32,9 @@ function MountsList() {
 
   // Fetch mounts list
   useEffect(() => {
+    if(status === 'idle')
     dispatch(fetchMountIndex())
-  }, [dispatch])
+  }, [status, dispatch])
 
 
   let renderedList
@@ -55,7 +56,7 @@ function MountsList() {
             key={mount.id}
             to={`/mounts/${mount.id}`}
             id={selectedTag}
-            data-wowhead={`https://${lang}.wowhead.com/mount=${mount.id}`}
+            data-wowhead={`https://fr.wowhead.com/mount=${mount.id}`}
             onClick={() => dispatch(newMountClicked())}
           >
             {mount.name[locale]}
